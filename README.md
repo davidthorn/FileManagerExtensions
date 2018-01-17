@@ -13,10 +13,10 @@ File management should be a simple thing and as easy as writing a terminal comma
 
 extension FileManager {
 
-    /// Returns the users home directory path based upon the Glibc getenv method
+    /// Returns the users home directory path
     ///
-    /// - :Returns String?
-    public var homeDirectory: String?
+    /// - :Returns String
+    public var homeDirectory: String
 
 }
 
