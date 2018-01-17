@@ -100,3 +100,35 @@ extension String {
 }
 
 ```
+
+## touch
+
+```swift
+
+    /// writes the contents of the string to the filename
+    ///
+    /// - Parameter: filename the name of the filename 
+    /// - Returns: true if the data has been written or false for all other reasons
+    func touch(filename: String) -> Bool
+
+```
+
+## String.touch
+
+```swift
+
+extension String {
+
+    /// creates a file using the filename
+    /// 
+    /// The filename can be either relative using the ~
+    /// The tilde will be automatically converted to use its absolute path
+    ///
+    /// - Parameter: filename the name of the filename 
+    /// - Returns: true if the file has been created otherwise false
+    public func touch(filename: String ) -> Bool 
+
+}
+
+```
+

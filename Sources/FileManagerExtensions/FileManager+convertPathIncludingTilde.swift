@@ -8,13 +8,11 @@ extension FileManager {
     /// - Returns: A new string with the tilde remove if was present else the original string
     public func convertPathIncludingTilde(using relativePath: String ) -> String {
 
-        guard let tilde = relativePath.first , tilde == "~" else {
+        guard let tilde = relativePath.tilde else {
             return relativePath
         }
 
-        guard let homePath = self.homeDirectory else {
-            return relativePath
-        }
+        let homePath = self.homeDirectory
 
         return relativePath.replacingOccurrences(of: String(tilde) , with: homePath)
 

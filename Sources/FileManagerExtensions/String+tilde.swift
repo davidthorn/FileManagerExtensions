@@ -6,7 +6,7 @@ extension String {
     /// - :Returns tilde character as a string
     public var tilde: String? {
 
-        guard let tilde = self.first else { return nil }
+        guard let tilde = self.first , tilde == "~" else { return nil }
 
         return String(tilde)
 

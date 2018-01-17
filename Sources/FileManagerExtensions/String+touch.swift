@@ -4,9 +4,9 @@ extension String {
 
     /// writes the contents of the string to the filename
     ///
-    /// - Parameter: with the name of the filename 
+    /// - Parameter: filename the name of the filename 
     /// - Returns: true if the data has been written or false for all other reasons
-    public func createFile(with filename: String ) -> Bool {
+    public func touch(filename: String ) -> Bool {
 
         let convertedPath = FileManager.default.convertPathIncludingTilde(using: filename )
 

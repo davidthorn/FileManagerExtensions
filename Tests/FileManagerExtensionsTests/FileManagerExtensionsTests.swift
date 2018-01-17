@@ -5,6 +5,26 @@ import Foundation
 
 class FileManagerExtensionsTests: XCTestCase {
     
+    func testStringTouch() {
+
+        let baseString = "~/touchedfile"
+
+        let contents = "write this data to file please"
+
+        let result = contents.touch(filename: baseString)
+
+        XCTAssertEqual(result , true , "the file should has been created")
+    }
+
+    func testTouch() {
+
+        let baseString = "~/touchedfile"
+
+        let result = touch(filename: baseString)
+
+        XCTAssertEqual(result , true , "the file should has been created")
+    }
+
     func testTildePropertyOfString() {
 
         let baseString = "~/myfile"
@@ -25,7 +45,7 @@ class FileManagerExtensionsTests: XCTestCase {
 
         XCTAssertNotNil(homeDirectory , "the home directory should not be nil")
 
-        XCTAssertEqual(homeDirectory!, baseUrl)
+        XCTAssertEqual(homeDirectory, baseUrl)
 
     }
     
@@ -57,9 +77,13 @@ class FileManagerExtensionsTests: XCTestCase {
 
         XCTAssertNotNil(fileName, "filename should not be nil")
 
-        fileName!.append("/filename")
+        XCTAssertEqual(fileName , "/home/david")
 
-        let result = FileManager.default.createFile(with: fileName!)
+        fileName.append("/filename")
+
+        XCTAssertEqual(fileName , "/home/david/filename")
+
+        let result = FileManager.default.createFile(with: fileName)
 
         XCTAssertEqual(result , true , "the file should has been created")
 
@@ -71,13 +95,25 @@ class FileManagerExtensionsTests: XCTestCase {
 
         XCTAssertNotNil(fileName, "filename should not be nil")
 
-        fileName!.append("/filename3")
+        fileName.append("/filename3")
 
         let contents = "This is the contents of the file"
 
-        let result = contents.createFile(with: fileName!)
+        let result = contents.createFile(with: fileName)
 
         XCTAssertEqual(result , true , "the file should has been created")
+
+    }
+
+    func testhomeDirectoryForCurrentUser() {
+
+        let homeDirectory = FileManager.default.homeDirectoryForCurrentUser
+
+        let absolutePath = homeDirectory.absoluteString
+
+        XCTAssertEqual(absolutePath , "file:///home/david/")
+
+        XCTAssertEqual(homeDirectory.relativePath , "/home/david")
 
     }
 
@@ -87,6 +123,9 @@ class FileManagerExtensionsTests: XCTestCase {
         ("testHomeDirectoryReturnsCorrectPath" , testHomeDirectoryReturnsCorrectPath),
         ("testTildePropertyOfString" , testTildePropertyOfString),
         ("testFileCreateWorks" , testFileCreateWorks),
-        ("testStringFileCreateWorks" , testStringFileCreateWorks)
+        ("testStringFileCreateWorks" , testStringFileCreateWorks),
+        ("testTouch" , testTouch),
+        ("testStringTouch" , testStringTouch),
+        ("testhomeDirectoryForCurrentUser" , testhomeDirectoryForCurrentUser)
     ]
 }
